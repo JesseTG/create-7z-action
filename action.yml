@@ -10,6 +10,9 @@ inputs:
   pathTarget:
     description: '7z archive path to write'
     required: true
+  args:
+    description: 'A string containing space-separated arguments passed to 7z. Inserted after the "a" but before the source and target.'
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
