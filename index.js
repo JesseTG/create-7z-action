@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const _7z =  require('7zip-min');
 
 async function run() {
-  try { 
+  try {
     const source = core.getInput('pathSource');
     const target = core.getInput('pathTarget');
     const args = core.getInput('args');
@@ -10,10 +10,8 @@ async function run() {
     const _7zargs = ['a'];
 
     if (args != null) {
-
-      for (const a of args.split(/ +/)) {
-        _7zargs.push(a);
-      }
+      Array.prototype.push.apply(_7zargs, args.split(/ +/));
+      // Append all arguments to the arg array
     }
 
     _7zargs.push(target, source);
@@ -29,7 +27,7 @@ async function run() {
       core.setFailed("create 7z archive failed: " + err);
       return;
     }
-  } 
+  }
   catch (error) {
     core.setFailed(error.message);
   }
