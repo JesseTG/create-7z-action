@@ -7,7 +7,7 @@ async function run() {
     const target = core.getInput('pathTarget');
     const args = core.getInput('args');
 
-    const _7zargs = ['a'];
+    const _7zargs = ['a']; // "a"dd to archive
 
     if (args != null) {
       Array.prototype.push.apply(_7zargs, args.split(/ +/));
@@ -15,6 +15,7 @@ async function run() {
     }
 
     _7zargs.push(target, source);
+    // Not a typo, the target comes before the source on the command line
 
     core.info("packing " + source + " into " + target);
     const err = await new Promise((resolve, _) => {
